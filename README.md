@@ -41,11 +41,3 @@ pip install django-dynamodb-cache
 
 
 ## Contribution
-
-이 프로젝트는 기여를 환영합니다!
-
-패치를 제출하기 전에 issue 티켓을 먼저 제출해주세요.
-
-Pull request 는 `main` 브랜치로 머지되며 항상 사용 가능한 상태로 유지해야 합니다.
-
-모든 테스트 코드를 통과한 뒤 리뷰한 후 머지됩니다.
