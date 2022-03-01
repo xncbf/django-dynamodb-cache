@@ -1,4 +1,5 @@
 import boto3
+from botocore.exceptions import ClientError
 
 from .helper import logger
 
@@ -34,9 +35,15 @@ def create_table(settings, dynamodb):
             #     "TimeToLiveStatus": "ENABLED"
             # }
         )
-    except Exception:
-        exists = True
-        logger.info("Table %s already exists", settings.table_name)
+    except ClientError as e:
+        if e.response["Error"]["Code"] == "LimitExceededException":
+            logger.warn("API call limit exceeded; backing off and retrying...")
+            raise e
+        elif e.response["Error"]["Code"] == "ResourceInUseException":
+            logger.info("Table %s already exists", settings.table_name)
+            exists = True
+        else:
+            raise e
 
     if not table:
         table = dynamodb.Table(settings.table_name)

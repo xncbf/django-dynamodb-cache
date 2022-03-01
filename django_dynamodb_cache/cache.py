@@ -52,7 +52,7 @@ class Cache:
         }
 
     def add(self, key, value, timeout=None, version=None):
-        if (key, version) in self:
+        if self.has_key(key, version):  # noqa: W601
             return False
         self.set(key, value, timeout, version)
         logger.debug('Add "%s" on dynamodb "%s" table', key, self.table.table_name)
@@ -86,10 +86,6 @@ class Cache:
         return value
 
     def set(self, key, value, timeout=None, version=None, batch=None):
-        create = False
-        if (key, version) not in self:
-            create = True
-
         key = self.make_key(key, version=version)
         self.validate_key(key)
 
@@ -98,7 +94,7 @@ class Cache:
 
         table = batch or self.table
 
-        if create:
+        if not self.has_key(key, version):  # noqa: W601
             response = table.put_item(Item=self.make_item(key, expiration, value))
         else:
             response = table.update_item(  # noqa
@@ -243,7 +239,7 @@ class Cache:
         # This is a separate method, rather than just a copy of has_key(),
         # so that it always has the same functionality as has_key(), even
         # if a subclass overrides it.
-        return key in self
+        return self.has_key(key)  # noqa: W601
 
     def validate_key(self, key):
         """
@@ -291,5 +287,3 @@ class Cache:
     def close(self, **kwargs):
         """Close the cache connection"""
         logger.info("Close connection with %s table", self.table.table_name)
-
-    # endregion

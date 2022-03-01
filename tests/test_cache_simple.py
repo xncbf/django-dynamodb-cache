@@ -1,13 +1,11 @@
 from unittest import TestCase, mock
 
-from moto import mock_dynamodb2
-
 from django_dynamodb_cache import Cache
 from django_dynamodb_cache.dynamodb import create_table, get_dynamodb
 from django_dynamodb_cache.settings import Settings
 
 
-@mock_dynamodb2
+# @mock_dynamodb2
 class TestCacheSimple(TestCase):
     @classmethod
     def setUpClass(cls):
