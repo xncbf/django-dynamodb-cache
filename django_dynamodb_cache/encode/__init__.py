@@ -1,1 +1,1 @@
-# flake8: noqa
+from .pickle import PickleEncode  # noqa
