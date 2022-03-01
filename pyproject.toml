@@ -11,7 +11,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Django = "3.2.10"
+Django = "^3.2"
+boto3 = "^1.21.9"
+botocore = "^1.24.9"
 
 
 [tool.poetry.dev-dependencies]
@@ -23,6 +25,7 @@ mypy = "^0.931"
 isort = "^5.10.1"
 Faker = "^11.3.0"
 factory-boy = "^3.2.1"
+moto = "^3.0.5"
 
 [tool.black]
 line-length = 120

@@ -1,0 +1,2 @@
+class CacheKeyWarning(RuntimeWarning):
+    pass
