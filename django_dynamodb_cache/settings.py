@@ -14,8 +14,8 @@ class Settings(object):
         self.key_prefix = "django_dynamodb_cache"
         self.key_func = lambda p, k, v: f"{p}:{k}:{v}"
 
-        self.key_column = "django_dynamodb_cache_key"
-        self.expiration_column = "django_dynamodb_cache_expiration"
+        self.key_column = "cache_key"
+        self.expiration_column = "cache_expiration"
         self.content_column = "content"
 
         self.aws_access_key_id = None
