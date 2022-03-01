@@ -22,6 +22,12 @@ Working with: AWS Dynamodb
 </a>
 </p>
 
+- [django-dynamodb-cache [WIP]](#django-dynamodb-cache-wip)
+  - [Installation](#installation)
+  - [Setup on Django](#setup-on-django)
+  - [Create cache table command](#create-cache-table-command)
+  - [How to contribute](#how-to-contribute)
+
 ## Installation
 
 ```sh
@@ -58,6 +64,8 @@ On Django Settings
         }
     }
 ```
+
+## Create cache table command
 
 Run manage command to create cache table on Dynamodb before using
 
