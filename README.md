@@ -1,5 +1,9 @@
 # django-dynamodb-cache [WIP]
 
+Serverless cache backend for Django
+
+Working with: AWS Dynamodb
+
 <p align="center">
 <a href="https://github.com/xncbf/django-dynamodb-cache/actions?query=workflow%3ATests+event%3Apush+branch%3Amain" target="_blank">
     <img src="https://github.com/xncbf/django-dynamodb-cache/workflows/Tests/badge.svg?event=push&branch=main" alt="Test">
@@ -13,18 +17,10 @@
 <a href="https://pypi.org/project/django-dynamodb-cache" target="_blank">
     <img src="https://img.shields.io/pypi/pyversions/django-dynamodb-cache.svg?color=%2334D058" alt="Supported Python versions">
 </a>
+<a href="http://pypi.python.org/pypi/django-dynamodb-cache" target="_blank">
+    <img src="https://img.shields.io/badge/django-3.2-brightgreen.svg" alt="Coverage">
+</a>
 </p>
-
-- [django-dynamodb-cache [WIP]](#django-dynamodb-cache-wip)
-  - [Introduce](#introduce)
-  - [Installation](#installation)
-  - [Dependency](#dependency)
-  - [Example](#example)
-  - [Contribution](#contribution)
-
-## Introduce
-
-django cache backend for DynamoDB
 
 ## Installation
 
@@ -32,12 +28,42 @@ django cache backend for DynamoDB
 pip install django-dynamodb-cache
 ```
 
-## Dependency
+## Setup on Django
 
-- python == ^3.8
-- django == ^3.2
+On Django Settings
 
-## Example
+```python
+    instaled_apps = [
+        ...
+        'django_dynamodb_cache.compact.django'
+    ]
+
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_dynamodb_cache.compact.django.cache.DjangoCacheDynamodb',
+            'TIMEOUT': 120  # default 120 seconds == 2minutes
+            'KEY_PREFIX': 'django_dynamodb_cache'  # default django_dynamodb_cache
+            'VERSION': 1  # default 1
+            'KEY_FUNCTION': 'path.to.function' # f'{prefix}:{key}:{version}'
+
+            'OPTIONS': {
+                'aws_access_key_id': None       # need only if you dont have login
+                'aws_secret_access_key': None   # on aws-cli with your key
+                'aws_region_name': None         # or not in aws lambda
+
+                'read_capacity_units': 1
+                'write_capacity_units': 1
+                'encode': 'path.to.encode'  # default: 'django_dynamodb_cache.encode.PickleEncode
+            }
+        }
+    }
+```
+
+Run manage command to create cache table on Dynamodb before using
+
+`python manage.py create_dynamodb_cache`
+
+## How to contribute
 
 
-## Contribution
+**WIP**
