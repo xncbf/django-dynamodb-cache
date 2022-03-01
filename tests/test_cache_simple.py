@@ -24,17 +24,17 @@ class TestCacheSimple(TestCase):
         value = self.cache.get("test_django_dynamodb_cache", 1001)
         self.assertEqual(value, 1001)
 
-    def test_get_delete_many(self):
+    # def test_get_delete_many(self):
 
-        items = {f"test_django_dynamodb_cache_{i}": f"too much love {i}" for i in range(10)}
+    #     items = {f"test_django_dynamodb_cache_{i}": f"too much love {i}" for i in range(10)}
 
-        self.cache.set_many(items)
-        from_cache = self.cache.get_many(items.keys())
-        self.assertEqual(items, from_cache)
-        self.cache.delete_many(items.keys())
+    #     self.cache.set_many(items)
+    #     from_cache = self.cache.get_many(items.keys())
+    #     self.assertEqual(items, from_cache)
+    #     self.cache.delete_many(items.keys())
 
-        value = self.cache.get("test_django_dynamodb_cache_1", 1001)
-        self.assertEqual(value, 1001)
+    #     value = self.cache.get("test_django_dynamodb_cache_1", 1001)
+    #     self.assertEqual(value, 1001)
 
     def test_add(self):
         self.cache.set("test_add", "some set")
