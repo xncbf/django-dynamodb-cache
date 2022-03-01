@@ -5,7 +5,6 @@ MEMCACHE_MAX_KEY_LENGTH = 250
 
 class Settings(object):
     def __init__(self, **kwargs):
-        # defaults
         self.encode = "django_dynamodb_cache.encode.PickleEncode"
         self.timeout = 120
 
@@ -20,7 +19,7 @@ class Settings(object):
 
         self.aws_access_key_id = None
         self.aws_secret_access_key = None
-        self.aws_region_name = None
+        self.aws_region_name = "us-east-1"
 
         self.read_capacity_units = 1
         self.write_capacity_units = 1
