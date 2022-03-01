@@ -38,6 +38,9 @@ jobs:
     - name: Test
       run: |
         poetry run pytest --cov=django_dynamodb_cache tests/ --cov-report=xml
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - uses: codecov/codecov-action@v2
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
