@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_dynamodb_cache.compact.django",
+    "django_dynamodb_cache",
 ]
 
 MIDDLEWARE = [
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-CACHES = {"default": {"BACKEND": "django_dynamodb_cache.compact.django.cache.DjangoCache"}}
+CACHES = {"default": {"BACKEND": "django_dynamodb_cache.backend.DjangoCacheBackend"}}
 
 ROOT_URLCONF = "tests.django.urls"
 

@@ -1,7 +1,8 @@
-from django_dynamodb_cache import Cache, Settings
+from django_dynamodb_cache.cache import Cache
+from django_dynamodb_cache.settings import Settings
 
 
-class DjangoCacheDynamodb(Cache):
+class DjangoCacheBackend(Cache):
     def __init__(self, params):
 
         table_name = params.get("LOCATION", None)
