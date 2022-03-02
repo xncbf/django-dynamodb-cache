@@ -12,7 +12,7 @@ class DjangoCacheBackend(Cache):
         key_function = params.get(["KEY_FUNCTION"], None)
 
         options = params.get("OPTIONS", {})
-        settings = Settings(  # noqa
+        settings = Settings(
             table_name=table_name,
             timeout=timeout,
             key_prefix=key_prefix,
@@ -20,4 +20,4 @@ class DjangoCacheBackend(Cache):
             key_function=key_function ** options,
         )
 
-        super().__init__(params)
+        super().__init__(settings)
