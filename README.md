@@ -47,10 +47,10 @@ INSTALLED_APPS = [
 CACHES = {
     "default": {
         "BACKEND": "django_dynamodb_cache.compact.django.backend.DjangoCacheBackend",
-        "TIMEOUT": 120  # seconds
-        "KEY_PREFIX": "django_dynamodb_cache"
-        "VERSION": 1
-        "KEY_FUNCTION": "path.to.function" # f"{prefix}:{key}:{version}"
+        "TIMEOUT": 120,  # seconds
+        "KEY_PREFIX": "django_dynamodb_cache",
+        "VERSION": 1,
+        "KEY_FUNCTION": "path.to.function",  # f"{prefix}:{key}:{version}"
         "OPTIONS": {
             "aws_region_name": "us-east-1",
             "read_capacity_units": 1,
