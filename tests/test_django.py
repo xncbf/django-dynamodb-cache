@@ -6,7 +6,7 @@ from unittest import TestCase
 import django
 from django.core.management import call_command
 
-os.environ["DJANGO_SETTINGS_MODULE"] = "tests.django.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "tests.settings.settings"
 
 # Set up Django
 django.setup()

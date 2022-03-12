@@ -4,5 +4,8 @@ INSTALLED_APPS = [
     "django_dynamodb_cache",
 ]
 
-CACHES = {"default": {"BACKEND": "django_dynamodb_cache.backend.DjangoCacheBackend"}}
+CACHES = {
+    "default": {"BACKEND": "django_dynamodb_cache.backend.DjangoCacheBackend"},
+    "replica": {"BACKEND": "django_dynamodb_cache.backend.DjangoCacheBackend"},
+}
 USE_TZ = False
