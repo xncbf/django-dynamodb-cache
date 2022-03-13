@@ -3,7 +3,7 @@ from django.core.cache import caches
 from django.core.management.base import BaseCommand
 
 from django_dynamodb_cache.backend import DjangoCacheBackend
-from django_dynamodb_cache.dynamodb import create_table, get_dynamodb
+from django_dynamodb_cache.dynamodb import create_table
 
 
 class Command(BaseCommand):
@@ -18,9 +18,11 @@ class Command(BaseCommand):
                 self.create_table(cache_alias, cache._table)
 
     def create_table(self, cache_alias, tablename):
-        from django_dynamodb_cache.settings import Settings
+        from django_dynamodb_cache.backend import DjangoCacheBackend
 
-        settings = Settings()
-        dynamodb = get_dynamodb(settings)
-        table = create_table(settings, dynamodb)
+        backend = DjangoCacheBackend(tablename, settings.CACHES[cache_alias])
+        _settings = backend.settings
+        dynamodb = backend.dynamodb
+        # dynamodb = get_dynamodb(settings)
+        table = create_table(_settings, dynamodb)
         self.stdout.write(self.style.SUCCESS(f"Cache table {table.table_arn} created for cache {cache_alias}"))

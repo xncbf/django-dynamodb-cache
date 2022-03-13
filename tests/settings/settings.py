@@ -12,7 +12,9 @@ CACHES = {
         "MAX_ENTRIES": 300,
         "KEY_PREFIX": "django-dynamodb-cache",
         "VERSION": 1,
-        "OPTIONS": {},
+        "OPTIONS": {
+            "aws_region_name": "us-east-1",
+        },
     },
     "replica": {"BACKEND": "django_dynamodb_cache.backend.DjangoCacheBackend"},
 }
