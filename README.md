@@ -1,6 +1,6 @@
 # django-dynamodb-cache [WIP]
 
-Fast & safe & cost-effective DynamoDB cache backend for Django
+Fast, safe, cost-effective DynamoDB cache backend for Django
 
 <p align="center">
 <a href="https://codecov.io/gh/xncbf/django-dynamodb-cache" target="_blank">
