@@ -1,6 +1,5 @@
 import os
 import shutil
-import sys
 from unittest import TestCase
 
 import django
@@ -15,4 +14,4 @@ django.setup()
 class TestDjangoApp(TestCase):
     def test_command(self):
         shutil.rmtree("tests/migrations", True)
-        call_command("makemigrations", "tests", verbosity=2 if "-v" in sys.argv else 0)
+        call_command("createcachetable")
