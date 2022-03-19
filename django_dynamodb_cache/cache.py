@@ -262,8 +262,7 @@ class Cache:
 
     def incr_version(self, key, delta=1, version=None):
         """
-        Add delta to the cache version for the supplied key. Return the new
-        version.
+        Add delta to the cache version for the supplied key. Return the new version.
         """
         if version is None:
             version = self.version
@@ -278,8 +277,7 @@ class Cache:
 
     def decr_version(self, key, delta=1, version=None):
         """
-        Subtract delta from the cache version for the supplied key. Return the
-        new version.
+        Subtract delta from the cache version for the supplied key. Return the new version.
         """
         return self.incr_version(key, -delta, version)
 
