@@ -75,4 +75,10 @@ python manage.py createcachetable
 
 ## How to contribute
 
-**WIP**
+This project is welcome to contributions!
+
+Please submit an issue ticket before submitting a patch.
+
+Pull requests are merged into the main branch and should always remain available.
+
+After passing all test code, it is reviewed and merged.
