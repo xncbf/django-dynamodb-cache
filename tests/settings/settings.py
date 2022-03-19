@@ -18,6 +18,9 @@ CACHES = {
             "aws_region_name": "us-east-1",
         },
     },
-    "replica": {"BACKEND": "django_dynamodb_cache.backend.DjangoCacheBackend"},
+    "replica": {
+        "BACKEND": "django_dynamodb_cache.backend.DjangoCacheBackend",
+        "LOCATION": f"test-django-dynamodb-cache-{random()}",
+    },
 }
 USE_TZ = False
