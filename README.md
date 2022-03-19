@@ -1,8 +1,6 @@
 # django-dynamodb-cache [WIP]
 
-Serverless cache backend for Django
-
-Working with: AWS Dynamodb
+Fast, safe, cost-effective DynamoDB cache backend for Django
 
 <p align="center">
 <a href="https://codecov.io/gh/xncbf/django-dynamodb-cache" target="_blank">
@@ -71,7 +69,7 @@ https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html#c
 Run manage command to create cache table on Dynamodb before using
 
 ```zsh
-python manage.py create_dynamodb_cache
+python manage.py createcachetable
 ```
 
 ## How to contribute

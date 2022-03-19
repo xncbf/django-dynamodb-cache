@@ -5,7 +5,9 @@ from .helper import logger
 
 
 def get_dynamodb(settings):
-    dynamodb = boto3.resource("dynamodb", region_name=settings.aws_region_name)
+    session = boto3.session.Session()
+    region = settings.aws_region_name or session.region_name
+    dynamodb = boto3.resource("dynamodb", region_name=region)
     return dynamodb
 
 

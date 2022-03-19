@@ -2,10 +2,10 @@ import time
 import warnings
 from decimal import Decimal
 
-from django_dynamodb_cache.dynamodb import get_dynamodb, get_table
-from django_dynamodb_cache.exceptions import CacheKeyWarning
-from django_dynamodb_cache.helper import logger
-from django_dynamodb_cache.settings import MEMCACHE_MAX_KEY_LENGTH
+from .dynamodb import get_dynamodb, get_table
+from .exceptions import CacheKeyWarning
+from .helper import logger
+from .settings import MEMCACHE_MAX_KEY_LENGTH
 
 
 class Cache:

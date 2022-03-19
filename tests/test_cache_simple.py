@@ -4,36 +4,44 @@ from django_dynamodb_cache import Cache
 from django_dynamodb_cache.dynamodb import create_table, get_dynamodb
 from django_dynamodb_cache.settings import Settings
 
+from .conf import TABLE_NAME
 
-# @mock_dynamodb2
+
 class TestCacheSimple(TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.settings = Settings(aws_region_name="us-east-1", table_name="test_django_dynamodb_cache")
+        cls.settings = Settings(aws_region_name="us-east-1", table_name=TABLE_NAME)
         cls.dynamodb = get_dynamodb(cls.settings)
         cls.cache = Cache(cls.settings)
         cls.table = create_table(cls.settings, cls.dynamodb)
         super().setUpClass()
 
+    @classmethod
+    def teardown_class(cls):
+        cls.table.delete(
+            TableName=cls.settings.table_name,
+        )
+        super().tearDownClass()
+
     def test_set_simple(self):
-        self.cache.set("test_django_dynamodb_cache", "too much love")
-        item = self.cache.get("test_django_dynamodb_cache")
+        self.cache.set("test-django-dynamodb-cache", "too much love")
+        item = self.cache.get("test-django-dynamodb-cache")
         self.assertEqual(item, "too much love")
 
-        self.cache.delete("test_django_dynamodb_cache")
-        value = self.cache.get("test_django_dynamodb_cache", 1001)
+        self.cache.delete("test-django-dynamodb-cache")
+        value = self.cache.get("test-django-dynamodb-cache", 1001)
         self.assertEqual(value, 1001)
 
     # def test_get_delete_many(self):
 
-    #     items = {f"test_django_dynamodb_cache_{i}": f"too much love {i}" for i in range(10)}
+    #     items = {f"test-django-dynamodb-cache_{i}": f"too much love {i}" for i in range(10)}
 
     #     self.cache.set_many(items)
     #     from_cache = self.cache.get_many(items.keys())
     #     self.assertEqual(items, from_cache)
     #     self.cache.delete_many(items.keys())
 
-    #     value = self.cache.get("test_django_dynamodb_cache_1", 1001)
+    #     value = self.cache.get("test-django-dynamodb-cache_1", 1001)
     #     self.assertEqual(value, 1001)
 
     def test_add(self):

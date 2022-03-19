@@ -1,25 +1,26 @@
-from django_dynamodb_cache.helper import import_string
+from .helper import import_string
 
 MEMCACHE_MAX_KEY_LENGTH = 250
 
 
 class Settings(object):
     def __init__(self, **kwargs):
+        # defaults
         self.encode = "django_dynamodb_cache.encode.PickleEncode"
         self.timeout = 120
 
         self.table_name = "django_dynamodb_cache"
         self.version = 1
-        self.key_prefix = "django_dynamodb_cache"
+        self.key_prefix = "django_cache"
         self.key_func = lambda p, k, v: f"{p}:{k}:{v}"
 
         self.key_column = "cache_key"
-        self.expiration_column = "cache_expiration"
+        self.expiration_column = "expiration"
         self.content_column = "content"
 
         self.aws_access_key_id = None
         self.aws_secret_access_key = None
-        self.aws_region_name = "us-east-1"
+        self.aws_region_name = None
 
         self.read_capacity_units = 1
         self.write_capacity_units = 1
