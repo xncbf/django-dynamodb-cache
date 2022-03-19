@@ -1,5 +1,5 @@
-from django_dynamodb_cache.cache import Cache
-from django_dynamodb_cache.settings import Settings
+from .cache import Cache
+from .settings import Settings
 
 
 class DjangoCacheBackend(Cache):

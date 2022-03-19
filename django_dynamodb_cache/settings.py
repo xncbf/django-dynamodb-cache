@@ -1,4 +1,4 @@
-from django_dynamodb_cache.helper import import_string
+from .helper import import_string
 
 MEMCACHE_MAX_KEY_LENGTH = 250
 

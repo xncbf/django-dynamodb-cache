@@ -15,6 +15,13 @@ class TestCacheSimple(TestCase):
         cls.table = create_table(cls.settings, cls.dynamodb)
         super().setUpClass()
 
+    @classmethod
+    def teardown_class(cls):
+        cls.table.delete(
+            TableName=cls.settings.table_name,
+        )
+        super().tearDownClass()
+
     def test_set_simple(self):
         self.cache.set("test-django-dynamodb-cache", "too much love")
         item = self.cache.get("test-django-dynamodb-cache")
