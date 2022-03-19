@@ -63,7 +63,7 @@ CACHES = {
 ## Aws credentials
 
 The same method as configuring-credentials provided in the boto3 documentation is used.
-https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html#configuring-credentials
+<https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html#configuring-credentials>
 
 ## Create cache table command
 

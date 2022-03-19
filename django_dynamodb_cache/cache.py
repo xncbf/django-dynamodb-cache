@@ -2,13 +2,15 @@ import time
 import warnings
 from decimal import Decimal
 
+from django.core.cache.backends.base import BaseCache
+
 from .dynamodb import get_dynamodb, get_table
 from .exceptions import CacheKeyWarning
 from .helper import logger
 from .settings import MEMCACHE_MAX_KEY_LENGTH
 
 
-class Cache:
+class Cache(BaseCache):
     def __init__(self, settings):
 
         self.version = settings.version
