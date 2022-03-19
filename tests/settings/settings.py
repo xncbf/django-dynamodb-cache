@@ -1,3 +1,5 @@
+from random import random
+
 SECRET_KEY = "django-insecure-jv!jxo%un3wse2^#s2_e$awvo1-cpb1z-)f7o14nry-9se7=ui"
 
 INSTALLED_APPS = [
@@ -7,7 +9,7 @@ INSTALLED_APPS = [
 CACHES = {
     "default": {
         "BACKEND": "django_dynamodb_cache.backend.DjangoCacheBackend",
-        "LOCATION": "test-django-dynamodb-cache-location",
+        "LOCATION": f"test-django-dynamodb-cache-{random()}",
         "TIMEOUT": 60,
         "MAX_ENTRIES": 300,
         "KEY_PREFIX": "django-dynamodb-cache",

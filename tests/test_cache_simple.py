@@ -4,12 +4,13 @@ from django_dynamodb_cache import Cache
 from django_dynamodb_cache.dynamodb import create_table, get_dynamodb
 from django_dynamodb_cache.settings import Settings
 
+from .conf import TABLE_NAME
 
-# @mock_dynamodb2
+
 class TestCacheSimple(TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.settings = Settings(aws_region_name="us-east-1", table_name="test-django-dynamodb-cache")
+        cls.settings = Settings(aws_region_name="us-east-1", table_name=TABLE_NAME)
         cls.dynamodb = get_dynamodb(cls.settings)
         cls.cache = Cache(cls.settings)
         cls.table = create_table(cls.settings, cls.dynamodb)
