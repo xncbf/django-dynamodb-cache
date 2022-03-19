@@ -25,7 +25,7 @@ mypy = "^0.931"
 isort = "^5.10.1"
 Faker = "^11.3.0"
 factory-boy = "^3.2.1"
-moto = "^3.0.5"
+moto = {extras = ["all"], version = "^3.1.1"}
 
 [tool.black]
 line-length = 120
