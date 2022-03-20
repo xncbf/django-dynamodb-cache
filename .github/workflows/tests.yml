@@ -42,7 +42,8 @@ jobs:
         run: pip install tox tox-gh-actions
 
       - name: "Run tests"
-        run: tox ${{ matrix.experimental && '-e py310-djmaster' || '' }}
+        run: |
+          tox ${{ matrix.experimental && '-e py310-djmaster' || '' }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
