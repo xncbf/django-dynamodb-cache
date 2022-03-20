@@ -1,4 +1,4 @@
-# django-dynamodb-cache [WIP]
+# django-dynamodb-cache
 
 Fast, safe, cost-effective DynamoDB cache backend for Django
 
@@ -17,7 +17,7 @@ Fast, safe, cost-effective DynamoDB cache backend for Django
 </a>
 </p>
 
-- [django-dynamodb-cache [WIP]](#django-dynamodb-cache-wip)
+- [django-dynamodb-cache](#django-dynamodb-cache)
   - [Installation](#installation)
   - [Setup on Django](#setup-on-django)
   - [Aws credentials](#aws-credentials)
