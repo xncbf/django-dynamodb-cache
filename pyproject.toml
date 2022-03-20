@@ -26,6 +26,7 @@ isort = "^5.10.1"
 Faker = "^11.3.0"
 factory-boy = "^3.2.1"
 moto = {extras = ["all"], version = "^3.1.1"}
+tox = "^3.24.5"
 
 [tool.black]
 line-length = 120
@@ -53,5 +54,7 @@ log_cli = "true"
 log_level = "INFO"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+requires = [
+    "poetry-core>=1.0.0",
+]
