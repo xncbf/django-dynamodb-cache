@@ -87,9 +87,8 @@ class TestCacheSimple(TestCase):
         self.assertEqual(value, -32)
 
     def test_touch(self):
-        self.cache.touch("touch")
-        value = self.cache.get("touch")
-        self.assertEqual(value, None)
+        value = self.cache.touch("touch")
+        self.assertEqual(value["ResponseMetadata"]["HTTPStatusCode"], 200)
 
     def test_get_or_set(self):
         value = self.cache.get("get_or_set")
@@ -97,7 +96,7 @@ class TestCacheSimple(TestCase):
         value = self.cache.get_or_set("get_or_set", 10)
         self.assertEqual(value, 10)
         value = self.cache.get_or_set("get_or_set", 11)
-        self.assertEqual(value, 11)
+        self.assertEqual(value, 10)
         self.cache.delete("get_or_set")
         value = self.cache.get("get_or_set")
         self.assertEqual(value, None)
