@@ -4,6 +4,18 @@ version = "0.1.0"
 description = ""
 authors = ["xncbf <xncbf12@gmail.com>"]
 keywords = ["django", "dynamodb", "cache", "django cache backend"]
+classifiers = [
+    "Framework :: Django :: 3",
+    "Framework :: Django :: 3.0",
+    "Framework :: Django :: 3.1",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4",
+    "Framework :: Django :: 4.0",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
 homepage = "https://github.com/xncbf/django-dynamodb-cache"
 repository = "https://github.com/xncbf/django-dynamodb-cache"
 license = "MIT"
