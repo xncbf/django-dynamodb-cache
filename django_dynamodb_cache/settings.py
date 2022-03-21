@@ -1,3 +1,5 @@
+from django.core.cache.backends.base import default_key_func
+
 from .helper import import_string
 
 MEMCACHE_MAX_KEY_LENGTH = 250
@@ -30,7 +32,19 @@ class Settings(object):
                 setattr(self, key, value)
 
         if hasattr(self, "key_function"):
-            self.key_func = self.module(self.key_function)
+            self.key_func = self.get_key_func(self.key_function)
+
+    def get_key_func(self, key_func):
+        """
+        Function to decide which key function to use.
+        Default to ``default_key_func``.
+        """
+        if key_func is not None:
+            if callable(key_func):
+                return key_func
+            else:
+                return import_string(key_func)
+        return default_key_func
 
     def get(self, key):
         value = getattr(self, key)

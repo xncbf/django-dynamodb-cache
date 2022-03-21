@@ -11,12 +11,10 @@ from django_dynamodb_cache.backend import DjangoCacheBackend
 from django_dynamodb_cache.dynamodb import get_table
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "tests.settings.settings"
-
-# Set up Django
 django.setup()
 
 
-class TestDjangoCommands(TestCase):
+class TestDjango(TestCase):
     @classmethod
     def teardown_class(cls):
         for cache_alias in settings.CACHES:
