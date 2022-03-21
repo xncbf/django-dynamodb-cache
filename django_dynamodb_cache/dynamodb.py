@@ -32,10 +32,6 @@ def create_table(settings, dynamodb):
                 "ReadCapacityUnits": settings.read_capacity_units,
                 "WriteCapacityUnits": settings.write_capacity_units,
             },
-            # TimeToLiveDescription={
-            #     "AttributeName": settings.expiration_column,
-            #     "TimeToLiveStatus": "ENABLED"
-            # }
         )
     except ClientError as e:
         if e.response["Error"]["Code"] == "LimitExceededException":
@@ -63,7 +59,6 @@ def create_table(settings, dynamodb):
 
 
 def create_ttl(table, settings):
-
     try:
         response = table.meta.client.update_time_to_live(  # noqa
             TableName=settings.table_name,
