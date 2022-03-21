@@ -1,0 +1,11 @@
+codecov:
+  require_ci_to_pass: yes
+
+coverage:
+  status:
+    project:
+      target: auto
+      threshold: 1%
+    patch:
+      default:
+        target: 0%  # new contributions should have a coverage at least equal to target
