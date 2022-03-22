@@ -3,8 +3,8 @@ from .settings import Settings
 
 
 class DjangoCacheBackend(Cache):
-    def __init__(self, table, params):
-        table_name = params.get("LOCATION", None)
+    def __init__(self, location, params):
+        table_name = location
         timeout = params.get("TIMEOUT", None)
         key_prefix = params.get("KEY_PREFIX", None)
         version = params.get("VERSION", None)
