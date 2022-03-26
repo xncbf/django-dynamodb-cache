@@ -25,8 +25,8 @@ class Settings(object):
         self.aws_region_name = None
 
         self.is_on_demand = True
-        self.read_capacity_units = 0
-        self.write_capacity_units = 0
+        self.read_capacity_units = 1
+        self.write_capacity_units = 1
 
         for key, value in kwargs.items():
             if value is not None:

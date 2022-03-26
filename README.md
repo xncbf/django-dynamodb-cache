@@ -80,8 +80,8 @@ CACHES = {
             "aws_access_key_id": "aws_access_key_id",          # (optional)
             "aws_secret_access_key": "aws_secret_access_key",  # (optional)
             "is_on_demand": False,                 # (optional) default: True
-            "read_capacity_units": 1,              # (optional) default: 0
-            "write_capacity_units": 1,             # (optional) default: 0
+            "read_capacity_units": 1,              # (optional)
+            "write_capacity_units": 1,             # (optional)
             "encode": "django_dynamodb_cache.encode.PickleEncode"  # (optional)
         }
     }
