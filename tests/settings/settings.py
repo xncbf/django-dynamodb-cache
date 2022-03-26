@@ -22,6 +22,7 @@ CACHES = {
         "VERSION": 1,
         "OPTIONS": {
             "aws_region_name": "us-east-1",
+            "is_on_demand": False,
             "read_capacity_units": 1,
             "write_capacity_units": 1,
             "encode": "django_dynamodb_cache.encode.PickleEncode",

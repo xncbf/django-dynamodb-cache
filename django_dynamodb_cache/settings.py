@@ -24,6 +24,7 @@ class Settings(object):
         self.aws_secret_access_key = None
         self.aws_region_name = None
 
+        self.is_on_demand = True
         self.read_capacity_units = 1
         self.write_capacity_units = 1
 

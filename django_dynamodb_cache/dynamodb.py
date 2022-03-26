@@ -19,20 +19,23 @@ def create_table(settings, dynamodb):
     table = None
     exists = False
     try:
-        table = dynamodb.create_table(
-            TableName=settings.table_name,
-            KeySchema=[
+        kwargs = {
+            "TableName": settings.table_name,
+            "KeySchema": [
                 {
                     "AttributeName": settings.key_column,
                     "KeyType": "HASH",  # Partition key
                 }
             ],
-            AttributeDefinitions=[{"AttributeName": settings.key_column, "AttributeType": "S"}],
-            ProvisionedThroughput={
+            "AttributeDefinitions": [{"AttributeName": settings.key_column, "AttributeType": "S"}],
+            "BillingMode": "PAY_PER_REQUEST" if settings.is_on_demand else "PROVISIONED",
+        }
+        if not settings.is_on_demand:
+            kwargs["ProvisionedThroughput"] = {
                 "ReadCapacityUnits": settings.read_capacity_units,
                 "WriteCapacityUnits": settings.write_capacity_units,
-            },
-        )
+            }
+        table = dynamodb.create_table(**kwargs)
     except ClientError as e:
         if e.response["Error"]["Code"] == "LimitExceededException":
             logger.warn("API call limit exceeded; backing off and retrying...")

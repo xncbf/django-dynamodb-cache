@@ -76,9 +76,10 @@ CACHES = {
         "VERSION": 1,                              # (optional)
         "KEY_FUNCTION": "path.to.function",        # (optional) f"{prefix}:{key}:{version}"
         "OPTIONS": {
-            "aws_region_name": "us-east-1",        # (optional)
-            "aws_access_key_id": "us-east-1",      # (optional)
-            "aws_secret_access_key": "us-east-1",  # (optional)
+            "aws_region_name": "us-east-1",                    # (optional)
+            "aws_access_key_id": "aws_access_key_id",          # (optional)
+            "aws_secret_access_key": "aws_secret_access_key",  # (optional)
+            "is_on_demand": False,                 # (optional) default: True
             "read_capacity_units": 1,              # (optional)
             "write_capacity_units": 1,             # (optional)
             "encode": "django_dynamodb_cache.encode.PickleEncode"  # (optional)
