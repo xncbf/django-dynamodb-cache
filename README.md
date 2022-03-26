@@ -25,6 +25,7 @@ Fast, safe, cost-effective DynamoDB cache backend for Django
 
 - [django-dynamodb-cache](#django-dynamodb-cache)
   - [Introduce](#introduce)
+  - [Why should I use this?](#why-should-i-use-this)
   - [Installation](#installation)
   - [Setup on Django](#setup-on-django)
   - [Aws credentials](#aws-credentials)
@@ -39,7 +40,14 @@ This is compatible with the django official cache framework.
 
 Did you set the boto3 permission?
 
-Enter the django official command createcachetable and get started easily
+Enter the django official command createcachetable and get started easily.
+
+## Why should I use this?
+
+- There are few management points, because dynamodb is a fully managed service.
+- Data is safely stored unlike inmemory db.
+- Because you only pay for what you use, it saves money on light projects such as side projects or back offices.
+- If you use it in a side project and the speed slows down due to increased usage, you can easily switch to DAX.
 
 ## Installation
 
