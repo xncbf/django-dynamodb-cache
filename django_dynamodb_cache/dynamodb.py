@@ -28,6 +28,7 @@ def create_table(settings, dynamodb):
                 }
             ],
             AttributeDefinitions=[{"AttributeName": settings.key_column, "AttributeType": "S"}],
+            BillingMode="PAY_PER_REQUEST" if settings.is_on_demand else "PROVISIONED",
             ProvisionedThroughput={
                 "ReadCapacityUnits": settings.read_capacity_units,
                 "WriteCapacityUnits": settings.write_capacity_units,
