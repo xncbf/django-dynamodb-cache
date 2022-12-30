@@ -32,6 +32,7 @@ Fast, safe, cost-effective DynamoDB cache backend for Django
   - [Create cache table command](#create-cache-table-command)
   - [Future improvements](#future-improvements)
   - [How to contribute](#how-to-contribute)
+    - [Debug](#debug)
 
 ## Introduce
 
@@ -119,3 +120,12 @@ Please submit an issue ticket before submitting a patch.
 Pull requests are merged into the main branch and should always remain available.
 
 After passing all test code, it is reviewed and merged.
+
+### Debug
+
+Tests must be run in a sandbox environment.
+
+To run the Dynamodb sandbox:
+```
+docker compose up --build
+```
