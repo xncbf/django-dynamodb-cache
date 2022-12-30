@@ -75,10 +75,20 @@ class TestCacheSimple(TestCase):
         self.cache.validate_key(invalid)
         mock_warn.assert_called()
 
-    @mock.patch("warnings.warn")
-    def test_clean(self, mock_warn):
+    def test_clear(self):
+        self.cache.set("key_1", "value_1")
+        self.cache.set("key_2", "value_2")
+        self.cache.set("key_3", "value_3")
+
+        self.assertEqual(self.cache.get("key_1"), "value_1")
+        self.assertEqual(self.cache.get("key_2"), "value_2")
+        self.assertEqual(self.cache.get("key_3"), "value_3")
+
         self.cache.clear()
-        mock_warn.assert_called()
+
+        self.assertEqual(self.cache.get("key_1"), None)
+        self.assertEqual(self.cache.get("key_2"), None)
+        self.assertEqual(self.cache.get("key_3"), None)
 
     def test_incr_decr_value(self):
         self.cache.set("i", 10)
