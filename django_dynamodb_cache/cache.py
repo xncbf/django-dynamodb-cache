@@ -174,7 +174,12 @@ class Cache(BaseCache):
         return "Item" in response
 
     def clear(self):
-        warnings.warn("Clean is not supported yet.")
+        scan = self.table.scan(ProjectionExpression=self.settings.key_column)
+
+        with self.table.batch_writer() as batch:
+            for each in scan["Items"]:
+                batch.delete_item(Key=each)
+        return True
 
     def get_many(self, keys, version=None):
         """

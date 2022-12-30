@@ -30,6 +30,7 @@ Fast, safe, cost-effective DynamoDB cache backend for Django
   - [Setup on Django](#setup-on-django)
   - [Aws credentials](#aws-credentials)
   - [Create cache table command](#create-cache-table-command)
+  - [Future improvements](#future-improvements)
   - [How to contribute](#how-to-contribute)
 
 ## Introduce
@@ -100,6 +101,14 @@ Run manage command to create cache table on Dynamodb before using
 ```zsh
 python manage.py createcachetable
 ```
+
+## Future improvements
+
+In this project, the following can be improved in the future.
+
+- A full scan is included to achieve `cache.clear()`.
+This can lead to performance degradation when there is a lot of cached data.
+
 
 ## How to contribute
 
