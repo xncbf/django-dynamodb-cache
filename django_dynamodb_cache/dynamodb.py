@@ -5,9 +5,12 @@ from .helper import logger
 
 
 def get_dynamodb(settings):
-    session = boto3.session.Session()
+    session = boto3.session.Session(
+        aws_access_key_id=settings.aws_access_key_id,
+        aws_secret_access_key=settings.aws_secret_access_key,
+    )
     region = settings.aws_region_name or session.region_name
-    dynamodb = boto3.resource("dynamodb", region_name=region)
+    dynamodb = session.resource("dynamodb", region_name=region)
     return dynamodb
 
 
