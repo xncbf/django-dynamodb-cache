@@ -31,6 +31,11 @@ jobs:
 
     name: ${{ matrix.experimental && 'Django master [ok to fail]' || format('Python {0}', matrix.python-version) }}
     steps:
+      - name: Setup DynamoDB Local
+        uses: rrainn/dynamodb-action@v2.0.1
+        with:
+          port: 8000
+          cors: '*'
       - uses: actions/checkout@v2
       - name: Setup python
         uses: actions/setup-python@v2
