@@ -1,3 +1,5 @@
+import sys
+
 import boto3
 from botocore.exceptions import ClientError
 
@@ -10,7 +12,11 @@ def get_dynamodb(settings):
         aws_secret_access_key=settings.aws_secret_access_key,
     )
     region = settings.aws_region_name or session.region_name
-    dynamodb = session.resource("dynamodb", region_name=region)
+
+    if "pytest" in sys.modules:
+        dynamodb = session.resource("dynamodb", region_name=region, endpoint_url="http://localhost:8000")
+    else:
+        dynamodb = session.resource("dynamodb", region_name=region)
     return dynamodb
 
 
