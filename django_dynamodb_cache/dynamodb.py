@@ -16,7 +16,7 @@ def get_dynamodb(settings):
     if "pytest" in sys.modules:
         dynamodb = session.resource("dynamodb", region_name=region, endpoint_url="http://localhost:8000")
     else:
-        dynamodb = session.resource("dynamodb", region_name=region)
+        dynamodb = session.resource("dynamodb", region_name=region)  # pragma: no cover
     return dynamodb
 
 
