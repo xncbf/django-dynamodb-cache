@@ -27,7 +27,7 @@ jobs:
     strategy:
       max-parallel: 8
       matrix:
-        python-version: [3.8, 3.9, "3.10"]
+        python-version: [3.8, 3.9, "3.10", "3.11"]
 
     name: ${{ matrix.experimental && 'Django master [ok to fail]' || format('Python {0}', matrix.python-version) }}
     steps:
@@ -48,7 +48,7 @@ jobs:
 
       - name: "Run tests"
         run: |
-          tox ${{ matrix.experimental && '-e py310-djmaster' || '' }}
+          tox ${{ matrix.experimental }}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -59,31 +59,3 @@ jobs:
           files: coverage.xml
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
-
-
-
-    # steps:
-    # - uses: actions/checkout@v1
-    # - name: Set up Python ${{ matrix.python-version }}
-    #   uses: actions/setup-python@v2
-    #   with:
-    #     python-version: ${{ matrix.python-version }}
-    # - name: Install Poetry
-    #   run: |
-    #     python -m pip install poetry
-    # - name: Install dependencies
-    #   run: |
-    #     poetry install
-    # - name: Test
-    #   run: |
-    #     poetry run pytest --cov=django_dynamodb_cache tests/ --cov-report=xml
-    #   env:
-    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION_NAME }}
-    # - uses: codecov/codecov-action@v2
-    #   with:
-    #     token: ${{ secrets.CODECOV_TOKEN }}
-    #     files: coverage.xml
-    #     fail_ci_if_error: true # optional (default = false)
-    #     verbose: true # optional (default = false)
