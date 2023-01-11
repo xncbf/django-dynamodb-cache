@@ -23,8 +23,8 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
-Django = "^4.1"
+python = "^3.8"
+Django = "^3.2"
 boto3 = "^1.21.9"
 botocore = "^1.24.9"
 
