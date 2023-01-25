@@ -24,7 +24,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-Django = "^3.2"
+Django = ">=3.2,<5"
 boto3 = "^1.21.9"
 botocore = "^1.24.9"
 
