@@ -11,6 +11,13 @@ class Command(BaseCommand):
 
     requires_system_checks = []
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--database',
+            default=None,
+            help='Not used in this command (see settings.CACHES["options"] to change the table name)',
+        )
+
     def handle(self, *tablenames, **options):
         for cache_alias in settings.CACHES:
             cache = caches[cache_alias]
