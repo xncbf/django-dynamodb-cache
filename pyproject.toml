@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-dynamodb-cache"
-version = "0.5.0"
+version = "0.5.1"
 description = ""
 authors = ["xncbf <xncbf12@gmail.com>"]
 keywords = ["django", "dynamodb", "cache", "django cache backend"]
