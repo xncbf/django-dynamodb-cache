@@ -3,7 +3,6 @@ from django_dynamodb_cache.settings import Settings
 from tests.conf import TABLE_NAME
 
 
-# @mock_dynamodb
 def test_create_table_simple():
     settings = Settings(aws_region_name="us-east-1", table_name=TABLE_NAME)
     dynamodb = get_dynamodb(settings)
