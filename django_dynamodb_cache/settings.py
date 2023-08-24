@@ -9,7 +9,7 @@ class Settings(object):
     def __init__(self, **kwargs):
         # defaults
         self.encode = "django_dynamodb_cache.encode.PickleEncode"
-        self.timeout = 120
+        self.timeout = 300
 
         self.table_name = "django_dynamodb_cache"
         self.version = 1

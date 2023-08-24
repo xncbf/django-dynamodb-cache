@@ -10,6 +10,8 @@ from .helper import logger
 from .settings import MEMCACHE_MAX_KEY_LENGTH
 
 
+_NOT_SET = object()
+
 class Cache(BaseCache):
     def __init__(self, settings):
 
@@ -26,7 +28,12 @@ class Cache(BaseCache):
         self.settings = settings
 
     def make_expiration(self, timeout):
-        timeout = timeout or self.timeout
+        if timeout is None:
+            return None
+        elif timeout == _NOT_SET:
+            timeout = self.timeout
+        else:
+            timeout = timeout
         timeout_d = Decimal(timeout)
         now = Decimal(time.time())
         return now + timeout_d
@@ -86,7 +93,7 @@ class Cache(BaseCache):
         value = self.encode.loads(value.value)
         return value
 
-    def set(self, key, value, timeout=None, version=None, batch=None):
+    def set(self, key, value, timeout=_NOT_SET, version=None, batch=None):
         key = self.make_key(key, version=version)
         self.validate_key(key)
 
@@ -111,7 +118,7 @@ class Cache(BaseCache):
             self.table.table_name,
         )
 
-    def touch(self, key, timeout=None, version=None):
+    def touch(self, key, timeout=_NOT_SET, version=None):
         key = self.make_key(key, version=version)
         self.validate_key(key)
         expiration = self.make_expiration(timeout)
