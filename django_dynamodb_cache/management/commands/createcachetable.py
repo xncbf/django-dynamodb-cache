@@ -1,3 +1,5 @@
+from typing import List
+
 from django.conf import settings
 from django.core.cache import caches
 from django.core.management.base import BaseCommand
@@ -9,11 +11,11 @@ from django_dynamodb_cache.dynamodb import create_table
 class Command(BaseCommand):
     help = "Creates the tables needed to use the DynamoDB cache backend."
 
-    requires_system_checks = []
+    requires_system_checks: List = []
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--database',
+            "--database",
             default=None,
             help='Not used in this command (see settings.CACHES["options"] to change the table name)',
         )
