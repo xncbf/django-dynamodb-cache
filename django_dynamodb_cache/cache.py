@@ -9,10 +9,11 @@ from .exceptions import CacheKeyWarning
 from .helper import logger
 from .settings import MEMCACHE_MAX_KEY_LENGTH
 
+_NOT_SET = object()
+
 
 class Cache(BaseCache):
     def __init__(self, settings):
-
         self.version = settings.version
         self.key_func = settings.key_func
         self.key_prefix = settings.key_prefix
@@ -26,7 +27,12 @@ class Cache(BaseCache):
         self.settings = settings
 
     def make_expiration(self, timeout):
-        timeout = timeout or self.timeout
+        if timeout is None:
+            return None
+        elif timeout == _NOT_SET:
+            timeout = self.timeout
+        else:
+            timeout = timeout
         timeout_d = Decimal(timeout)
         now = Decimal(time.time())
         return now + timeout_d
@@ -52,7 +58,7 @@ class Cache(BaseCache):
             self.settings.content_column: value,
         }
 
-    def add(self, key, value, timeout=None, version=None):
+    def add(self, key, value, timeout=_NOT_SET, version=None):
         if self.has_key(key, version):  # noqa: W601
             return False
         self.set(key, value, timeout, version)
@@ -86,7 +92,7 @@ class Cache(BaseCache):
         value = self.encode.loads(value.value)
         return value
 
-    def set(self, key, value, timeout=None, version=None, batch=None):
+    def set(self, key, value, timeout=_NOT_SET, version=None, batch=None):
         key = self.make_key(key, version=version)
         self.validate_key(key)
 
@@ -111,7 +117,7 @@ class Cache(BaseCache):
             self.table.table_name,
         )
 
-    def touch(self, key, timeout=None, version=None):
+    def touch(self, key, timeout=_NOT_SET, version=None):
         key = self.make_key(key, version=version)
         self.validate_key(key)
         expiration = self.make_expiration(timeout)
@@ -146,7 +152,7 @@ class Cache(BaseCache):
             for key in keys:
                 self.delete(key, version=version, batch=batch)
 
-    def set_many(self, data, timeout=None, version=None):
+    def set_many(self, data, timeout=_NOT_SET, version=None):
         """
         Set a bunch of values in the cache at once from a dict of key/value
         pairs.
@@ -198,7 +204,7 @@ class Cache(BaseCache):
 
     # region copy from django
 
-    def get_or_set(self, key, default, timeout=None, version=None):
+    def get_or_set(self, key, default, timeout=_NOT_SET, version=None):
         """
         Fetch a given key from the cache. If the key does not exist,
         add the key and set it to the default value. The default value can

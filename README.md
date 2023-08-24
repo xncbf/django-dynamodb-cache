@@ -73,7 +73,7 @@ CACHES = {
     "default": {
         "BACKEND": "django_dynamodb_cache.backend.DjangoCacheBackend",
         "LOCATION": "table-name",                  # (mandatory)
-        "TIMEOUT": 120,                            # (optional) seconds
+        "TIMEOUT": 300,                            # (optional) seconds
         "KEY_PREFIX": "django_dynamodb_cache",     # (optional)
         "VERSION": 1,                              # (optional)
         "KEY_FUNCTION": "path.to.function",        # (optional) f"{prefix}:{key}:{version}"

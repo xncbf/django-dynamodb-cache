@@ -9,7 +9,7 @@ except ImportError:
 try:
     import werkzeug
 except ImportError:
-    werkzeug = None
+    werkzeug = None  # type: ignore
 
 logger = getLogger("django_dynamodb_cache")
 
