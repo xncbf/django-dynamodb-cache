@@ -17,6 +17,20 @@ def test_set_simple(cache: Cache):
     assert value == 1001
 
 
+def test_set_cache_without_timeout(cache: Cache):
+    cache.set("set_simple", "test", timeout=None)
+    item = cache.get("set_simple")
+    assert item == "test"
+
+
+def test_set_cache_with_version(cache: Cache):
+    cache.set("set_simple", "test", version=2)
+    item = cache.get("set_simple")
+    assert item is None
+    item = cache.get("set_simple", version=2)
+    assert item == "test"
+
+
 def test_get_delete_many(cache: Cache):
     items = {f"get_delete_many_{i}": f"test {i}" for i in range(10)}
 

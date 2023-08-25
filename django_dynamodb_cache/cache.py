@@ -47,8 +47,10 @@ class Cache(BaseCache):
         """
         if version is None:
             version = self.version
-
-        new_key = self.key_func(self.key_prefix, key, version)
+        if key.split(":")[-1] == str(version):
+            new_key = key
+        else:
+            new_key = self.key_func(self.key_prefix, key, version)
         return new_key
 
     def make_item(self, key, expiration, value):
@@ -79,7 +81,9 @@ class Cache(BaseCache):
             return default
 
         item = response["Item"]
-        if item[self.settings.expiration_column] < self.make_expiration(1):
+        if item[self.settings.expiration_column] is not None and item[
+            self.settings.expiration_column
+        ] < self.make_expiration(1):
             logger.debug(
                 'Get EXPIRED value for "%s" on dynamodb "%s" table',
                 key,
@@ -169,7 +173,18 @@ class Cache(BaseCache):
                 self.set(key, value, timeout=timeout, version=version, batch=batch)
         return []
 
+    def _extract_version(self, key):
+        """
+        Extract the version number from the cache key.
+        """
+        try:
+            return int(key.split(":")[-1])
+        except (IndexError, ValueError):
+            return None
+
     def has_key(self, key, version=None):
+        version = self._extract_version(key)
+
         key = self.make_key(key, version)
 
         response = self.table.get_item(
