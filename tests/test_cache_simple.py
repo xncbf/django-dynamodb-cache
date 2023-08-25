@@ -24,6 +24,7 @@ def test_set_cache_without_timeout(cache: Cache):
 
 
 def test_set_cache_with_version(cache: Cache):
+    cache.clear()
     cache.set("set_simple", "test", version=2)
     item = cache.get("set_simple")
     assert item is None
