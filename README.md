@@ -47,7 +47,6 @@ Enter the django official command createcachetable and get started easily.
 ## Why should I use this?
 
 - There are few management points, because dynamodb is a fully managed service.
-- Data is safely stored unlike inmemory db.
 - Because you only pay for what you use, it saves money on light projects such as side projects or back offices.
 - If you need more performance, you can easily switch to DAX.
 
